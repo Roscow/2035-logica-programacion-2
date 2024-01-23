@@ -18,7 +18,7 @@ function nuevoJuego(){
     numeroSecreto = Math.floor(Math.random() * 10) + 1;
     pista.innerHTML= numeroSecreto;
     intentoActual=0;
-    istaNumerosUsuario=[];
+    listaNumerosUsuario=[];
     assignarTexto(tituloPrincipal,"Nuevo juego, tienes "+ numeroIntentos+ " oportunidades" );
     assignarTexto(parrafo , "Indica un numero entre 1 y 10");
     document.getElementById("intentar").disabled = false;  
