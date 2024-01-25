@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -6,9 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@700&family=Inter:wght@400;700&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
     <title>JS Game</title>
 </head>
 
@@ -89,12 +90,12 @@
                 </div>
                
                 <nav>
-                    <a href="inicio.html">Inicio</a>
-                    <a href="index.html">Juega</a>
-                    <a href="puntuaciones.html">Puntuaciones</a>
+                    <a href="{% url 'inicio' %}">Inicio</a>
+                    <a href="{% url 'juega' %}">Juega</a>
+                    <a href="{% url 'puntuaciones' %}">Puntuaciones</a>
                 </nav>
             </div>
-            <img src="./img/ia.png" alt="Una persona mirando a la izquierda" class="container__imagen-persona" />
+            <img src="{% static 'img/ia.png' %}" alt="Una persona mirando a la izquierda" class="container__imagen-persona" />
         </div>
     </div>
 </body>
