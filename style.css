@@ -51,6 +51,8 @@ body::before {
 .container__informaciones {
     flex: 1;
     padding: 3rem;
+    width: 600px;
+    border: 0px solid white;
 }
 
 .container__boton {
@@ -77,7 +79,7 @@ body::before {
 }
 
 .container__input {
-    width: 100%;
+    width: 300px;
     height: 72px;
     border-radius: 16px;
     background-color: #FFF;
@@ -85,7 +87,7 @@ body::before {
     color: #1875E8;
     padding: 2rem;
     font-size: 24px;
-    font-weight: 700;
+    font-weight: 700; 
     font-family: 'Inter', sans-serif;
 }
 
@@ -96,7 +98,7 @@ body::before {
 
 h1 {
     font-family: 'Chakra Petch', sans-serif;
-    font-size: 72px;
+    font-size: 40px;
     padding-bottom: 3rem;
 }
 
@@ -105,7 +107,75 @@ button {
     font-family: 'Inter', sans-serif;
 }
 
-.texto__parrafo {
-    font-size: 32px;
+
+nav{
+    padding-top: 30px;
+}
+
+nav a{
+    font-size: x-large;
+    padding-left: 20px;
+    text-decoration: none;
+    font-weight: 600;
+    color: gold;
+}
+
+#link-repo{
+    font-size: 16px;
+}
+
+#nombre_jugador{
+    width: 300px;
+    height: 40px;
+    margin-top: 10px;
+}
+
+
+select {
+    width: 300px;
+    margin-top: 15px;
+    height: 72px;
+    border-radius: 16px;
+    border: none;
+    padding: 24px ;
+    color: #1875E8;
+    font-size: 24px;
+    font-weight: 700;
+    font-family: 'Inter', sans-serif;
+    vertical-align: top;
+}
+
+option{
+    color: #1875E8;
+    padding-top: 0;
+}
+
+
+p{
+    font-size: 20px;
     font-weight: 400;
+}
+
+input::placeholder{
+    opacity: 0.5;
+}
+
+#cronometro{
+    color: lawngreen;
+}
+
+
+#tabla_puntuaciones td{
+    padding-left: 20px;
+    padding-top: 10px;
+}
+
+#tabla_puntuaciones{
+    overflow-y: scroll;
+    height: 50px;
+    border-collapse: collapse;
+}
+
+#tabla_puntuaciones tbody{
+    height: 50px;
 }

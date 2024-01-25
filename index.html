@@ -19,20 +19,34 @@
             <div class="container__informaciones">
                 <div class="container__texto">
                     <h1></h1>
-                    <p class="texto__parrafo"></p>
+                    <p id="texto__parrafo"></p>
+                    <p id="intentosRestantes"></p>
+                    <p id="listaNumeros"></p>
+                    <p>Tiempo: <span id="cronometro"></span>  </p>
+                    <input id="nombre_jugador" class="container__input" name="nombre_jugador" type="text" min="1" max="10" value="" placeholder="Tu nombre">
+                    <br>
+                    <select id="pais_jugador" name="pais_jugador" >
+                        <option value="" selected> Pais</option>
+                        <option value="value1">Chile</option>
+                        <option value="value2">Brasil</option>
+                        <option value="value3">Argentina</option>
+                    </select>
+                    
                 </div>
-                <input type="number" min="1" max="10" class="container__input" required>
+                <input id="numeroUsuario" type="number" min="1" max="10" class="container__input" required>
                 <div class="chute container__botones">
                     <button class="container__boton" id="intentar" onclick="intentar()" disabled>Intentar</button>
                     <button class="container__boton" id="reiniciar" onclick="nuevoJuego()">Nuevo juego</button>
                 </div>
+                <nav>
+                    <a href="inicio.html">Inicio</a>
+                    <a href="index.html">Juega</a>
+                    <a href="puntuaciones.html">Puntuaciones</a>
+                </nav>
             </div>
             <img src="./img/ia.png" alt="Una persona mirando a la izquierda" class="container__imagen-persona" />
         </div>
     </div>
-
-
-
 
     <script src="app.js" defer></script>
 </body>

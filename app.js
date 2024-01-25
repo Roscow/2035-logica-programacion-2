@@ -1,27 +1,58 @@
 var tituloPrincipal = document.querySelector('h1')
-tituloPrincipal.innerHTML= "Humano, juegas??"
+tituloPrincipal.innerHTML= "Juega"
 var numeroSecreto = 0;
 var numeroIntentos = 5;
 var intentoActual = 0;
-var parrafo = document.querySelector('p')
 var pista = document.getElementById("pista")
-var inputNUmero = document.querySelector('input')
+var inputNUmero = document.getElementById('numeroUsuario')
+inputNUmero.hidden=true
 var listaNumerosUsuario=[];
+var intentosRestantesParrafo = document.getElementById('intentosRestantes')
+var inputNombreUsuario = document.getElementById('nombre_jugador')
+var listaNumerosParrafo = document.getElementById('listaNumeros')
+var parrafo = document.getElementById('texto__parrafo')
+var nombreJugador;
+var selectPais = document.getElementById('pais_jugador')
+let segundos = 0;
+let minutos = 0;
+let cronometroInterval;
 
 function assignarTexto(elemento, texto){
     elemento.innerHTML = texto;
 }
 
 function nuevoJuego(){
-    pista.remove();
-    inputNUmero.value='';
-    numeroSecreto = Math.floor(Math.random() * 10) + 1;
-    pista.innerHTML= numeroSecreto;
-    intentoActual=0;
-    listaNumerosUsuario=[];
-    assignarTexto(tituloPrincipal,"Nuevo juego, tienes "+ numeroIntentos+ " oportunidades" );
-    assignarTexto(parrafo , "Indica un numero entre 1 y 10");
-    document.getElementById("intentar").disabled = false;  
+    reiniciarCronometro()
+    pais = selectPais.value;
+    nombreJugador = inputNombreUsuario.value;
+    inputNombreUsuario.hidden = false;
+    selectPais.hidden = false;
+
+    if(nombreJugador == '' || pais == ''){
+        assignarTexto(parrafo, "Debes llenar todos los campos para iniciar un juego nuevo");
+        inputNombreUsuario.value = nombreJugador;
+        selectPais.value = pais;
+    }
+    else{
+        nombreJugador = inputNombreUsuario.value;
+        pais = selectPais.value;
+        pista.remove();
+        inputNUmero.value='';
+        inputNombreUsuario.hidden = true;
+        selectPais.hidden = true;
+        numeroSecreto = Math.floor(Math.random() * 10) + 1;
+        pista.innerHTML= numeroSecreto;
+        intentoActual=0;
+        listaNumerosUsuario=[];
+        intentosRestantes = numeroIntentos;
+        assignarTexto(tituloPrincipal,"Nuevo juego")
+        assignarTexto(parrafo , "Indica un numero entre 1 y 10");
+        assignarTexto(intentosRestantesParrafo,'Intentos restantes: '+ intentosRestantes)
+        assignarTexto(listaNumerosParrafo,'Numeros Probados: [ '+ listaNumerosUsuario+' ]')
+        document.getElementById("intentar").disabled = false;  
+        iniciarCronometro();
+        inputNUmero.hidden = false;
+    }
 }
 
 function mostrarPIsta(){
@@ -44,7 +75,10 @@ function mostrarPIsta(){
 
 function intentar(){
     intentoActual++;
+    intentosRestantes = numeroIntentos-intentoActual;
     var numeroUsuario = inputNUmero.value;
+    assignarTexto(intentosRestantesParrafo,'Intentos restantes: '+ intentosRestantes)
+    
     if( listaNumerosUsuario.includes(numeroUsuario)){
         intentoActual--;
         parrafo.innerHTML = "Ya habias intentado con este numero, prueba con otro"
@@ -63,31 +97,65 @@ function intentar(){
     
         if(parseInt(numeroIntentos-intentoActual) == 1 && numeroUsuario != numeroSecreto){
             mostrarPIsta()
-            tituloPrincipal.innerHTML = "Ultimo intento, una pista fue revelada en la pantalla  : ";
+            tituloPrincipal.innerHTML = "Ultimo intento, una pista fue revelada en la pantalla";
         }
     
         if(parseInt(numeroIntentos-intentoActual) == 0 && numeroUsuario != numeroSecreto){
             tituloPrincipal.innerHTML = "PERDISTE";
             parrafo.innerHTML = "SE TE ACABARON LOS INTENTOS, el numero era: "+ numeroSecreto;
             document.getElementById("intentar").disabled = true;
+            detenerCronometro()
         }
     }
-    
-    
-    
+    assignarTexto(listaNumerosParrafo,'Numeros Probados: [ '+ listaNumerosUsuario+' ]')    
 }
 
 function fallaste(){
     parrafo.innerHTML = "Fallaste";
-    tituloPrincipal.innerHTML = "Tu Intento n° "+  intentoActual+ " Fallo, quedan " + (numeroIntentos-intentoActual) + ' intentos' ;
+    tituloPrincipal.innerHTML = "Tu Intento n° "+  intentoActual ;
+    assignarTexto(intentosRestantesParrafo,'Intentos restantes: '+ intentosRestantes)
 }
 
 function adivinaste(){
-    tituloPrincipal.innerHTML = "FELICIDADES";
+    detenerCronometro()
+    tituloPrincipal.innerHTML = "Ganaste!!  :)";
     parrafo.innerHTML = "Adivinaste en el " + intentoActual + "° intento";
 }
 
 function perdiste(){
-    tituloPrincipal.innerHTML = "PERDISTE";
+    detenerCronometro()
+    tituloPrincipal.innerHTML = "Perdiste!!  :(";
     parrafo.innerHTML = "SE TE ACABARON LOS INTENTOS, el numero era: "+ numeroSecreto;
+    
+}
+
+
+function actualizarCronometro() {
+    segundos++;
+
+    if (segundos == 60) {
+        segundos = 0;
+        minutos++;
+    }
+
+    // Formatea el tiempo en formato mm:ss
+    const tiempoFormateado = minutos + ":" + (segundos < 10 ? "0" : "") + segundos;
+
+    document.getElementById('cronometro').innerText = tiempoFormateado;
+}
+
+
+function iniciarCronometro() {
+    cronometroInterval = setInterval(actualizarCronometro, 1000);
+}
+
+function detenerCronometro() {
+    clearInterval(cronometroInterval);
+}
+
+function reiniciarCronometro() {
+    clearInterval(cronometroInterval);
+    segundos = 0;
+    minutos = 0;
+    document.getElementById('cronometro').innerText = "0:00";
 }
