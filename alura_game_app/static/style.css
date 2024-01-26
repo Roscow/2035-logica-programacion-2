@@ -13,7 +13,6 @@ body {
     justify-content: center;
 }
 
-
 body::before {
     background-image: url("img/code.png");
     background-repeat: no-repeat;
@@ -39,7 +38,6 @@ body::before {
     background-size: 100% 100%;
     position: relative;
 }
-
 
 .container__contenido {
     display: flex;
@@ -130,7 +128,6 @@ nav a{
     margin-top: 10px;
 }
 
-
 select {
     width: 300px;
     margin-top: 15px;
@@ -148,12 +145,6 @@ select {
 option{
     color: #1875E8;
     padding-top: 0;
-}
-
-
-p{
-    font-size: 20px;
-    font-weight: 400;
 }
 
 input::placeholder{
@@ -178,4 +169,8 @@ input::placeholder{
 
 #tabla_puntuaciones tbody{
     height: 50px;
+}
+
+.p_inicio{
+    font-size: 12px;
 }

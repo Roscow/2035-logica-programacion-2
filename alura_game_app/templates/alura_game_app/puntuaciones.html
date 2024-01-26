@@ -11,6 +11,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'style.css' %}">
     <title>JS Game</title>
+    <style>
+        .table_container {
+            max-height: 400px; /* Ajusta la altura máxima según tus necesidades */
+            overflow-y: auto;
+        }
+
+    </style>
 </head>
 
 <body>
@@ -38,11 +45,12 @@
                                                 {{ forloop.counter }}
                                               {% endif %}
                                             </td>
-                                            <td>{{ j.jugador.nombre }}</td>
+                                            <td>{{ j.jugador.nombre|title }}</td>
                                             <td>{{ j.tiempo_formateado }}</td>
                                             <td>{{ j.jugador.pais.codigo_bandera|safe }} </td>
                                         </tr>
-                                    {% endfor %}    
+                                        
+                                    {% endfor %}   
                                 </tbody>
                             </table>
                         </div>
