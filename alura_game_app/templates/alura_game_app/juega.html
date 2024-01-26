@@ -25,13 +25,13 @@
                     <p id="intentosRestantes"></p>
                     <p id="listaNumeros"></p>
                     <p>Tiempo: <span id="cronometro"></span>  </p>
-                    <input id="nombre_jugador" class="container__input" name="nombre_jugador" type="text" min="1" max="10" value="" placeholder="Tu nombre">
+                    <input id="nombre_jugador" class="container__input" name="nombre_jugador" type="text" min="1" max="10" value="" placeholder="Tu nombre y apellido">
                     <br>
                     <select id="pais_jugador" name="pais_jugador" >
-                        <option value="" selected> Pais</option>
-                        <option value="value1">Chile</option>
-                        <option value="value2">Brasil</option>
-                        <option value="value3">Argentina</option>
+                        <option value="">Selecciona un pais...</option>
+                        {% for p in listaPaises %}
+                            <option value="{{p.nombre}}">{{p|capfirst}}</option>
+                        {% endfor %}
                     </select>
                     
                 </div>

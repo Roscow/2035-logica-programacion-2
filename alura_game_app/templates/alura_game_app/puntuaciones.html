@@ -25,62 +25,24 @@
                         <div class="table_container"> 
                             <table id="tabla_puntuaciones">
                                 <tbody>
-                                    <tr>
-                                        <td>&#127942;</td>
-                                        <td>Juanito Perez</td>
-                                        <td>01:00</td>
-                                        <td>&#x1F1EA;&#x1F1F8;</td>
-                                    </tr>
-                                    <tr>
-                                        <td>&#129352;</td>
-                                        <td>Marcelo Algo</td>
-                                        <td>01:30</td>
-                                        <td>&#x1F1E8;&#x1F1F1;</td>
-                                    </tr>
-                                    <tr>
-                                        <td>&#129353;</td>
-                                        <td>Nico Valdes</td>
-                                        <td>01:35</td>
-                                        <td>&#x1F1E7;&#x1F1F7;</td>
-                                    </tr>
-                                    <tr>
-                                        <td>4</td>
-                                    </tr>
-                                    <tr>
-                                        <td>5</td>
-                                    </tr>
-                                    <tr>
-                                        <td>5</td>
-                                    </tr>
-                                    <tr>
-                                        <td>5</td>
-                                    </tr>
-                                    <tr>
-                                        <td>5</td>
-                                    </tr>
-                                    <tr>
-                                        <td>5</td>
-                                    </tr>
-                                    <tr>
-                                        <td>5</td>
-                                    </tr>
-                                    <tr>
-                                        <td>5</td>
-                                    </tr>
-                                    <tr>
-                                        <td>5</td>
-                                    </tr>
-                                    <tr>
-                                        <td>5</td>
-                                    </tr>
-                                    <tr>
-                                        <td>5</td>
-                                    </tr>
-                                    <tr>
-                                        <td>5</td>
-                                    </tr>
-    
-    
+                                    {% for j in listaDiccionario %}
+                                        <tr>
+                                            <td>
+                                              {% if forloop.counter == 1 %}
+                                                &#127942; <!-- Emoji de medalla de oro -->
+                                              {% elif forloop.counter == 2 %}
+                                                &#129352;
+                                              {% elif forloop.counter == 3 %}
+                                                &#129353;
+                                              {% else %}
+                                                {{ forloop.counter }}
+                                              {% endif %}
+                                            </td>
+                                            <td>{{ j.jugador.nombre }}</td>
+                                            <td>{{ j.tiempo_formateado }}</td>
+                                            <td>{{ j.jugador.pais.codigo_bandera|safe }} </td>
+                                        </tr>
+                                    {% endfor %}    
                                 </tbody>
                             </table>
                         </div>

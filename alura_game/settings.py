@@ -23,7 +23,7 @@ load_dotenv()
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-n0+w91o(y11%i2^y7+&5c$8g0u=b6kp2*(_#8_y4uzxez2!z#m'
+SECRET_KEY = os.getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -94,6 +94,16 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.getenv("DB_NAME"),
+        'USER':  os.getenv("DB_USER"),
+        'PASSWORD':  os.getenv("DB_PASSWORD"),
+        'HOST':  os.getenv("DB_HOST"),
+        'PORT': '5432',       
+    }
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
