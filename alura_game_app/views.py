@@ -8,11 +8,32 @@ from django.views.decorators.csrf import csrf_exempt
 def inicio(request):
     return render(request, 'alura_game_app/inicio.html')
 
-
+@csrf_exempt  
 def juega(request):
     listaPaises = Pais.objects.all().order_by('nombre')
     context = {'listaPaises':listaPaises}
-    return render(request, 'alura_game_app/juega.html', context)
+    if request.method == 'POST':
+        # Obtener los valores del formulario
+        nombre_jugador = request.POST.get('nombre')
+        pais_jugador = request.POST.get('pais')
+        paisObj = Pais.objects.get(nombre=pais_jugador)
+        tiempo = int(request.POST.get('tiempo'))
+        try:
+            jugadorObj = Jugador.objects.get(nombre=nombre_jugador, pais=paisObj)
+            if (jugadorObj.mejor_puntaje > tiempo):
+                jugadorObj.mejor_puntaje = tiempo
+                jugadorObj.save()
+        except Exception as e:
+            print(f"no se pudo por error : {e}")
+            jugadorObj = Jugador.objects.create(
+                nombre=nombre_jugador,
+                mejor_puntaje=tiempo,
+                pais=paisObj
+            )
+            jugadorObj.save()
+        return render(request, 'alura_game_app/juega.html', context)
+    else:
+        return render(request, 'alura_game_app/juega.html', context)
 
 
 def puntuaciones(request):

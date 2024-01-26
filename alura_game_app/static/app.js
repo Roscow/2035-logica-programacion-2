@@ -193,7 +193,7 @@ function enviarDatosAServidor() {
     formData.append('tiempo', tiempoEnMiliSegundos);
 
     // Realizar una solicitud POST a la vista de Django
-    fetch('registrar_jugador/', {
+    fetch('', {
         method: 'POST',
         body: formData,
         headers: {
