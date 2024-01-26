@@ -15,6 +15,7 @@ var nombreJugador;
 var selectPais = document.getElementById('pais_jugador')
 let segundos = 0;
 let minutos = 0;
+let milisegundos=0;
 let cronometroInterval;
 
 function assignarTexto(elemento, texto){
@@ -120,6 +121,7 @@ function adivinaste(){
     detenerCronometro()
     tituloPrincipal.innerHTML = "Ganaste!!  :)";
     parrafo.innerHTML = "Adivinaste en el " + intentoActual + "° intento";
+    enviarDatosAServidor();
 }
 
 function perdiste(){
@@ -129,7 +131,7 @@ function perdiste(){
     
 }
 
-
+/*
 function actualizarCronometro() {
     segundos++;
 
@@ -143,10 +145,30 @@ function actualizarCronometro() {
 
     document.getElementById('cronometro').innerText = tiempoFormateado;
 }
+*/
+
+function actualizarCronometro() {
+    milisegundos += 100; // Incrementa los milisegundos en 100 (puedes ajustar el valor según tus necesidades)
+
+    if (milisegundos == 1000) {
+        milisegundos = 0;
+        segundos++;
+
+        if (segundos == 60) {
+            segundos = 0;
+            minutos++;
+        }
+    }
+
+    // Formatea el tiempo en formato mm:ss:SS
+    const tiempoFormateado = minutos + ":" + (segundos < 10 ? "0" : "") + segundos + ":" + (milisegundos < 10 ? "0" : milisegundos < 100 ? "" : "") + milisegundos;
+
+    document.getElementById('cronometro').innerText = tiempoFormateado;
+}
 
 
 function iniciarCronometro() {
-    cronometroInterval = setInterval(actualizarCronometro, 1000);
+    cronometroInterval = setInterval(actualizarCronometro, 100);
 }
 
 function detenerCronometro() {
@@ -157,5 +179,35 @@ function reiniciarCronometro() {
     clearInterval(cronometroInterval);
     segundos = 0;
     minutos = 0;
-    document.getElementById('cronometro').innerText = "0:00";
+    document.getElementById('cronometro').innerText = "0:00:00";
 }
+
+
+function enviarDatosAServidor() {
+    var tiempoEnMiliSegundos = (minutos * 60 + segundos) * 1000 + milisegundos;;
+
+    // Crear un objeto FormData y agregar valores
+    var formData = new FormData();
+    formData.append('nombre', nombreJugador);
+    formData.append('pais', pais);
+    formData.append('tiempo', tiempoEnMiliSegundos);
+
+    // Realizar una solicitud POST a la vista de Django
+    fetch('', {
+        method: 'POST',
+        body: formData,
+        headers: {
+            'Accept': 'application/json',
+            // No establezcas el Content-Type, será establecido automáticamente con multipart/form-data
+        },
+        credentials: 'same-origin',  // Ajusta esto según tus necesidades
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);  // Manejar la respuesta del servidor si es necesario
+    })
+    .catch(error => {
+        console.error('Error al enviar datos:', error);
+    });
+}
+

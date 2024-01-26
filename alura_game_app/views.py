@@ -57,25 +57,4 @@ def puntuaciones(request):
     context = {'listaJugadores':listaJugadores, 'listaDiccionario':listaDiccionario }
     return render(request, 'alura_game_app/puntuaciones.html',context)
 
-@csrf_exempt  
-def registrar_jugador(request):
-    if request.method == 'POST':
-        # Obtener los valores del formulario
-        nombre_jugador = request.POST.get('nombre')
-        pais_jugador = request.POST.get('pais')
-        paisObj = Pais.objects.get(nombre=pais_jugador)
-        tiempo = int(request.POST.get('tiempo'))
-        try:
-            jugadorObj = Jugador.objects.get(nombre=nombre_jugador, pais=paisObj)
-            if (jugadorObj.mejor_puntaje > tiempo):
-                jugadorObj.mejor_puntaje = tiempo
-                jugadorObj.save()
-        except Exception as e:
-            print(f"no se pudo por error : {e}")
-            jugadorObj = Jugador.objects.create(
-                nombre=nombre_jugador,
-                mejor_puntaje=tiempo,
-                pais=paisObj
-            )
-            jugadorObj.save()
 
