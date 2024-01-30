@@ -1,24 +1,24 @@
 var tituloPrincipal = document.querySelector('h1')
-/*tituloPrincipal.innerHTML= "Juega"*/
-var numeroSecreto = 0;
-var numeroIntentos = 5;
-var intentoActual = 0;
-var pista = document.getElementById("pista")
 var inputNUmero = document.getElementById('numeroUsuario')
-inputNUmero.hidden=true
-var listaNumerosUsuario=[];
 var intentosRestantesParrafo = document.getElementById('intentosRestantes')
 var inputNombreUsuario = document.getElementById('nombre_jugador')
 var listaNumerosParrafo = document.getElementById('listaNumeros')
 var parrafo = document.getElementById('texto__parrafo')
-var nombreJugador;
 var selectPais = document.getElementById('pais_jugador')
 var labelTIempo = document.getElementById('label_tiempo')
-labelTIempo.hidden = true;
+var pista = document.getElementById("pista")
+
+var numeroSecreto = 0;
+var numeroIntentos = 5;
+var intentoActual = 0;
+var listaNumerosUsuario=[];
+var nombreJugador;
 let segundos = 0;
 let minutos = 0;
 let milisegundos=0;
 let cronometroInterval;
+inputNUmero.hidden=true
+labelTIempo.hidden = true;
 
 function assignarTexto(elemento, texto){
     elemento.innerHTML = texto;
