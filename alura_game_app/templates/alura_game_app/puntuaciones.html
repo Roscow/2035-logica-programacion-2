@@ -1,40 +1,16 @@
+{% extends 'alura_game_app/base.html'  %}
 {% load static %}
 
-<!DOCTYPE html>
-<html lang="pt-br">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'style.css' %}">
-    <title>JS Game</title>
-    <style>
-        .table_container {
-            max-height: 400px; /* Ajusta la altura máxima según tus necesidades */
-            overflow-y: auto;
-        }
-
-    </style>
-</head>
-
-<body>
-
-    <div class="container">
-        <div id="pista"></div>
-        <div class="container__contenido">
-            <div class="container__informaciones">
+                {% block contenido %}
                 <div class="container__texto">
-                    <h1>Puntuaciones</h1>
+                    <h1>RANKING</h1>
                     <p class="texto__parrafo">
                         <div class="table_container"> 
                             <table id="tabla_puntuaciones">
                                 <tbody>
                                     {% for j in listaDiccionario %}
-                                        <tr>
-                                            <td>
+                                        <tr {% if forloop.counter <= 3 %} class="podio" {% endif %} >
+                                            <td >
                                               {% if forloop.counter == 1 %}
                                                 &#127942; <!-- Emoji de medalla de oro -->
                                               {% elif forloop.counter == 2 %}
@@ -58,16 +34,5 @@
 
                     </p>
                 </div>
+                {% endblock %}
                
-                <nav>
-                    <a href="{% url 'inicio' %}">Inicio</a>
-                    <a href="{% url 'juega' %}">Juega</a>
-                    <a href="{% url 'puntuaciones' %}">Puntuaciones</a>
-                </nav>
-            </div>
-            <img src="{% static 'img/ia.png' %}" alt="Una persona mirando a la izquierda" class="container__imagen-persona" />
-        </div>
-    </div>
-</body>
-
-</html>

@@ -1,5 +1,5 @@
 var tituloPrincipal = document.querySelector('h1')
-tituloPrincipal.innerHTML= "Juega"
+/*tituloPrincipal.innerHTML= "Juega"*/
 var numeroSecreto = 0;
 var numeroIntentos = 5;
 var intentoActual = 0;
@@ -13,6 +13,8 @@ var listaNumerosParrafo = document.getElementById('listaNumeros')
 var parrafo = document.getElementById('texto__parrafo')
 var nombreJugador;
 var selectPais = document.getElementById('pais_jugador')
+var labelTIempo = document.getElementById('label_tiempo')
+labelTIempo.hidden = true;
 let segundos = 0;
 let minutos = 0;
 let milisegundos=0;
@@ -53,6 +55,7 @@ function nuevoJuego(){
         document.getElementById("intentar").disabled = false;  
         iniciarCronometro();
         inputNUmero.hidden = false;
+        labelTIempo.hidden = false;
     }
 }
 

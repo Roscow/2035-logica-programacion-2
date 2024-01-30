@@ -1,4 +1,6 @@
+{% extends 'alura_game_app/base.html'  %}
 {% load static %}
+
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -8,52 +10,52 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'style.css' %}">
     <title>JS Game</title>
-    <style>
-        .p_inicio{
-            font-size: 13px;
-        }
-    </style>
+  
 </head>
 <body>
     <div class="container">
         <div id="pista"></div>
         <div class="container__contenido">
             <div class="container__informaciones">
+                {% block contenido %}
                 <div class="container__texto">
-                    <h1>Inicio</h1>
+                    <h1>INICIO</h1>
                     <h2>Instrucciones</h2>
                     <p class="p_inicio">
-                        Adivina el numero secreto en el menor tiempo posible, el 
-                        contador inicia cuando clickeas "juego nuevo", en el ultimo intento 
-                        una pista se revela en la pantalla, busca con atención!!. <br>
-                        Juega las veces que quieras y lucha por mejorar tus tiempos para llegar al primer lugar.
+                        ¡Adivina el número secreto en el menor tiempo posible!
+                        El contador comienza cuando haces clic en "Juego Nuevo". <br> En el último intento, recibirás una pista en la pantalla, ¡así que presta atención! <br>
+                        Juega tantas veces como desees y desafíate a ti mismo para mejorar tus tiempos y alcanzar el primer lugar.
+
                     </p>
                     <br>
                     <h2>Sobre el proyecto</h2>
                     <p class="p_inicio">
-                        Esta es una version del proyecto en el curso de javascript de Alura, 
-                        tiene algunas modificaciones con el objetivo de volverlo más entretenido 
-                        y más interactivo, y fue creado con la intención de poner en practica 
-                        lo aprendido.
+                        Esta versión del proyecto proviene del curso de JavaScript de Alura, pero ha experimentado algunas modificaciones con el propósito de hacerlo más entretenido e interactivo. Fue desarrollada con la intención de poner en práctica los conocimientos adquiridos durante el curso de JS.
+
                     </p>
-                    <br>
-                    <h2>Echa un vistazo al repositorio</h2>
-                    <p class="p_inicio"><a  href="https://github.com/Roscow/2035-logica-programacion-2">https://github.com/Roscow/2035-logica-programacion-2</a></p>
-                    <br>
-                    <h2>Sigueme en Linkedin</h2>
-                    <p class="p_inicio"><a href="https://www.linkedin.com/in/nicolas-v-973209289/">linkedin.com...</a></p>
-                    <br>
-                    <h2>Revisa el proceso de creación</h2>
-                    <p class="p_inicio"><a href="https://www.youtube.com/playlist?list=PLs-iGll2UUP_Wki6sUcBX8ffrCWZPidhp">youtube.com...</a></p>
-                    
+                   
+              
+                    <div class="links">
+                        <a href="https://github.com/Roscow/2035-logica-programacion-2" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-github"></i> 
+                        </a>
+    
+                        <a href="https://www.linkedin.com/in/nicolas-v-973209289/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin"></i> 
+                        </a>
+    
+                        <a href="https://www.youtube.com/playlist?list=PLs-iGll2UUP_Wki6sUcBX8ffrCWZPidhp" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-youtube"></i> 
+                        </a>
+
+                        <a href="https://www.digitalocean.com/?refcode=41e7852fbbad&utm_campaign=Referral_Invite&utm_medium=Referral_Program&utm_source=badge">
+                            <img src="https://web-platforms.sfo2.cdn.digitaloceanspaces.com/WWW/Badge%203.svg" alt="DigitalOcean Referral Badge" />
+                        </a>
+                    </div>
                 </div>
-                <nav>
-                    <a href="{% url 'inicio' %}">Inicio</a>
-                    <a href="{% url 'juega' %}">Juega</a>
-                    <a href="{% url 'puntuaciones' %}">Puntuaciones</a>
-                </nav>
+                {% endblock %}
+                
             </div>
             <img src="{% static 'img/ia.png' %}" alt="Una persona mirando a la izquierda" class="container__imagen-persona" />
         </div>
