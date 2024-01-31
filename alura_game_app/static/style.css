@@ -187,12 +187,12 @@ div{
 }
 
 .container_texto2{
-    max-height: 250px; /* Ajusta la altura máxima según tus necesidades */
+    max-height: 300px; /* Ajusta la altura máxima según tus necesidades */
     overflow-y: auto;
 }
 
 .table_container {
-    max-height: 380px; /* Ajusta la altura máxima según tus necesidades */
+    max-height: 400px; /* Ajusta la altura máxima según tus necesidades */
     overflow-y: auto;
 }
 
