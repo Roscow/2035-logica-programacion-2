@@ -1,27 +1,27 @@
 {% extends 'alura_game_app/base.html'  %}
 {% load static %}
 
-                    {% block contenido %}
-                        <div class="container__texto">
-                            <h1>JUEGA</h1>
-                            <p id="texto__parrafo"></p>
-                            <p id="intentosRestantes"></p>
-                            <p id="listaNumeros"></p>
-                            <p id="label_tiempo">Tiempo: <span id="cronometro"></span>  </p>
-                            <input id="nombre_jugador" class="container__input" name="nombre_jugador" type="text" min="1" max="10" value="" placeholder="Tu nombre y apellido">
-                            <br>
-                            <select id="pais_jugador" name="pais_jugador" >
-                                <option value="">Selecciona un pais...</option>
-                                {% for p in listaPaises %}
-                                    <option value="{{p.nombre}}">{{p|capfirst}}</option>
-                                {% endfor %}
-                            </select>
-                            
-                        </div>
-                        <input id="numeroUsuario" type="number" min="1" max="10" class="container__input" required>
-                        <div class="chute container__botones">
-                            <button class="container__boton" id="intentar" onclick="intentar()" disabled>Intentar</button>
-                            <button class="container__boton" id="reiniciar" onclick="nuevoJuego()">Nuevo juego</button>
-                        </div>
-                    {% endblock %}
+{% block contenido %}
+    <div class="container__texto">
+        <h1>JUEGA</h1>
+        <p id="texto__parrafo"></p>
+        <p id="intentosRestantes"></p>
+        <p id="listaNumeros"></p>
+        <p id="label_tiempo">Tiempo: <span id="cronometro"></span>  </p>
+        <input id="nombre_jugador" class="container__input" name="nombre_jugador" type="text" min="1" max="10" value="" placeholder="Tu nombre y apellido">
+        <br>
+        <select id="pais_jugador" name="pais_jugador" >
+            <option value="">Selecciona un pais...</option>
+            {% for p in listaPaises %}
+                <option value="{{p.nombre}}">{{p|capfirst}}</option>
+            {% endfor %}
+        </select>
+        
+    </div>
+    <input id="numeroUsuario" type="number" min="1" max="10" class="container__input" required>
+    <div class="chute container__botones">
+        <button class="container__boton" id="intentar" onclick="intentar()" disabled>Intentar</button>
+        <button class="container__boton" id="reiniciar" onclick="nuevoJuego()">Nuevo juego</button>
+    </div>
+{% endblock %}
                     
