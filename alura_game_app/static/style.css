@@ -187,7 +187,7 @@ div{
 }
 
 .container_texto2{
-    max-height: 300px; /* Ajusta la altura máxima según tus necesidades */
+    max-height: 250px; /* Ajusta la altura máxima según tus necesidades */
     overflow-y: auto;
 }
 
