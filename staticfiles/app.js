@@ -112,6 +112,7 @@ function intentar(){
         }
     }
     assignarTexto(listaNumerosParrafo,'Numeros Probados: [ '+ listaNumerosUsuario+' ]')    
+    inputNUmero.value=""
 }
 
 function fallaste(){
