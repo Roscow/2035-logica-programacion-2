@@ -30,7 +30,7 @@ body::before {
 }
 
 .container2 {
-    width: 75%;
+    width: 78%;
     height:80%;
     display: flex;
     align-items: center;
@@ -160,6 +160,7 @@ input::placeholder{
     width: 100% ;
 }
 
+
 .p_inicio{
     font-size: 12px;
 }
@@ -179,7 +180,7 @@ div{
 }
 
 .container_texto2{
-    max-height: 320px; /* Ajusta la altura máxima según tus necesidades */
+    max-height: 300px; /* Ajusta la altura máxima según tus necesidades */
     overflow-y: auto;
 }
 
