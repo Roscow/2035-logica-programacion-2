@@ -45,13 +45,14 @@ def puntuaciones(request):
         # Calcular segundos y milisegundos
         segundos = milisegundos_totales // 1000
         milisegundos = milisegundos_totales % 1000
+        primer_digito_milisegundos = int(str(milisegundos)[0])
 
         # Calcular minutos y segundos finales
         minutos = segundos // 60
         segundos = segundos % 60
 
         # Formatear el resultado
-        tiempo_formateado = "{:02d}:{:02d}:{:03d}".format(minutos, segundos, milisegundos)
+        tiempo_formateado = "{:2d}:{:02d}:{:01d}".format(minutos, segundos, primer_digito_milisegundos)
         dic={'jugador':l,'tiempo_formateado':tiempo_formateado }
         listaDiccionario.append(dic)
     context = {'listaJugadores':listaJugadores, 'listaDiccionario':listaDiccionario }
